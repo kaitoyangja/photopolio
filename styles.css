@@ -13,9 +13,60 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     color: #FFFFFF;
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(83, 52, 131, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(15, 52, 96, 0.1) 0%, transparent 50%),
+        linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #533483 100%);
     background-attachment: fixed;
     font-weight: 400;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Animated background elements */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.08), transparent),
+        radial-gradient(1px 1px at 90px 40px, rgba(255, 255, 255, 0.06), transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.05), transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: sparkle 20s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(45deg, transparent 30%, rgba(255, 107, 157, 0.03) 50%, transparent 70%);
+    background-size: 400px 400px;
+    animation: shimmer 15s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes sparkle {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-100px); }
+}
+
+@keyframes shimmer {
+    0%, 100% { opacity: 0.3; transform: translateX(-200px); }
+    50% { opacity: 0.6; transform: translateX(200px); }
 }
 
 .container {
@@ -357,8 +408,30 @@ section {
 
 /* About Section */
 .about {
-    background: rgba(26, 26, 46, 0.5);
-    backdrop-filter: blur(10px);
+    background: 
+        linear-gradient(135deg, rgba(26, 26, 46, 0.8) 0%, rgba(22, 33, 62, 0.6) 100%),
+        radial-gradient(circle at 30% 70%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.about::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.02) 50%, transparent 100%);
+    animation: aboutShimmer 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes aboutShimmer {
+    0%, 100% { transform: translateX(-100%); }
+    50% { transform: translateX(100%); }
 }
 
 .about-content {
@@ -432,14 +505,59 @@ section {
 
 /* Music Section */
 .music {
-    background: rgba(15, 52, 96, 0.3);
-    backdrop-filter: blur(10px);
+    background: 
+        linear-gradient(135deg, rgba(15, 52, 96, 0.7) 0%, rgba(83, 52, 131, 0.5) 100%),
+        radial-gradient(circle at 70% 30%, rgba(255, 107, 157, 0.08) 0%, transparent 50%);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.music::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+    animation: musicPulse 12s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes musicPulse {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(1.05); }
 }
 
 /* Live Performance Section */
 .live {
-    background: rgba(83, 52, 131, 0.2);
-    backdrop-filter: blur(10px);
+    background: 
+        linear-gradient(135deg, rgba(83, 52, 131, 0.6) 0%, rgba(15, 52, 96, 0.4) 100%),
+        radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.12) 0%, transparent 60%);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.live::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+    animation: liveGlow 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes liveGlow {
+    0%, 100% { opacity: 0.2; transform: rotate(0deg); }
+    50% { opacity: 0.4; transform: rotate(180deg); }
 }
 
 .live-content {
@@ -645,8 +763,30 @@ section {
 
 /* Skills Section */
 .skills {
-    background: rgba(83, 52, 131, 0.3);
-    backdrop-filter: blur(10px);
+    background: 
+        linear-gradient(135deg, rgba(83, 52, 131, 0.6) 0%, rgba(26, 26, 46, 0.5) 100%),
+        radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.1) 0%, transparent 50%);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.skills::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.015) 50%, transparent 100%);
+    animation: skillsFlow 15s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes skillsFlow {
+    0%, 100% { transform: translateY(-50px) rotate(0deg); opacity: 0.2; }
+    50% { transform: translateY(50px) rotate(180deg); opacity: 0.4; }
 }
 
 .skills-content {
@@ -704,8 +844,31 @@ section {
 
 /* Contact Section */
 .contact {
-    background: rgba(10, 10, 10, 0.5);
-    backdrop-filter: blur(10px);
+    background: 
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 46, 0.6) 100%),
+        radial-gradient(circle at 20% 20%, rgba(255, 107, 157, 0.08) 0%, transparent 50%);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+    animation: contactBreath 18s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes contactBreath {
+    0%, 100% { opacity: 0.1; transform: scale(0.95); }
+    50% { opacity: 0.3; transform: scale(1.05); }
 }
 
 .contact-content {
@@ -770,11 +933,33 @@ section {
 
 /* Footer */
 .footer {
-    background: rgba(0, 0, 0, 0.8);
+    background: 
+        linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 46, 0.7) 100%),
+        radial-gradient(circle at 50% 50%, rgba(255, 107, 157, 0.05) 0%, transparent 50%);
     color: #FFFFFF;
     padding: 3rem 0;
     text-align: center;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(20px);
+    position: relative;
+    overflow: hidden;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.01) 50%, transparent 100%);
+    animation: footerShimmer 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes footerShimmer {
+    0%, 100% { transform: translateX(-100%); opacity: 0.2; }
+    50% { transform: translateX(100%); opacity: 0.4; }
 }
 
 .footer-content {
